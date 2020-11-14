@@ -1,7 +1,13 @@
 import { createAction, props } from '@ngrx/store';
 
-export const loadBoards = createAction(
-  '[Board] Load Boards'
+export const loadBoard = createAction(
+  '[Board] Load Board',
+  props<{ size }>()
+);
+
+export const loadBoardSuccess = createAction(
+  '[Board] Load Board Success',
+  props<{ board }>()
 );
 
 

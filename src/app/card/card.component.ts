@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 export interface CardData {
   imageId: string;
@@ -39,20 +39,20 @@ export interface CardData {
   ]
 })
 export class CardComponent implements OnInit {
-  data: CardData = {
-    imageId: 'pDGNBK9A0sk',
-    state: 'default'
-  };
+  @Input()
+  imageId = 'pDGNBK9A0sk';
+  state = 'default';
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
   cardClicked(): void {
-    if (this.data.state === 'default') {
-      this.data.state = 'flipped';
+    if (this.state === 'default') {
+      this.state = 'flipped';
     } else {
-      this.data.state = 'default';
+      this.state = 'default';
     }
   }
 

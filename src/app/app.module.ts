@@ -8,6 +8,7 @@ import { environment } from '../environments/environment';
 import { StoreModule } from '@ngrx/store';
 import { BoardModule } from './board/board.module';
 import { EffectsModule } from '@ngrx/effects';
+import { NgxImagelyModule } from '@iresa/ngx-imagely';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +18,8 @@ import { EffectsModule } from '@ngrx/effects';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
-    BoardModule
+    BoardModule,
+    NgxImagelyModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

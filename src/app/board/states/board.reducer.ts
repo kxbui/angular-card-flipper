@@ -1,21 +1,30 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import * as BoardActions from './board.actions';
 
 export const boardFeatureKey = 'board';
 
-export interface State {
+export interface CardState {
+  matched: boolean;
+  id: string;
+}
+
+export interface BoardState {
+  cards: CardState[];
 
 }
 
-export const initialState: State = {
-
+export const initialState: BoardState = {
+  cards: [] as CardState[]
 };
 
 
 export const reducer = createReducer(
   initialState,
 
-  on(BoardActions.loadBoards, state => state),
+  on(BoardActions.loadBoardSuccess, (state, payload) => ({
+    ...state,
+    board: payload.board,
+  })),
 
 );
 

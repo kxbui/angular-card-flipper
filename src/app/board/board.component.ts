@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoardComponent implements OnInit {
 
+  cards = Array.from(Array(16).keys());
+
   constructor() { }
 
   ngOnInit(): void {

@@ -1,26 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { concatMap } from 'rxjs/operators';
-import { EMPTY } from 'rxjs';
+import { exhaustMap, map } from 'rxjs/operators';
 
 import * as BoardActions from './board.actions';
-
+import { BoardService } from './board.service';
 
 @Injectable()
 export class BoardEffects {
+  loadBoards$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BoardActions.loadBoard),
+      exhaustMap(({ size }) => this.boardService.loadBoard(size).pipe(map(board => BoardActions.loadBoardSuccess({ board }))))
+    )
+  );
 
-
-  // loadBoards$ = createEffect(() => {
-  //   return this.actions$.pipe( 
-
-  //     ofType(BoardActions.loadBoards),
-  //     /** An EMPTY observable only emits completion. Replace with your own observable API request */
-  //     concatMap(() => EMPTY)
-  //   );
-  // });
-
-
-  constructor(private actions$: Actions) {}
-
+  constructor(private actions$: Actions, private boardService: BoardService) {}
 }
