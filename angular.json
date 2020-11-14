@@ -110,6 +110,7 @@
   },
   "defaultProject": "angular-card-flipper",
   "cli": {
-    "defaultCollection": "@ngrx/schematics"
+    "defaultCollection": "@ngrx/schematics",
+    "analytics": false
   }
 }
