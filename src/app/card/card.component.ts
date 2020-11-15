@@ -40,7 +40,7 @@ export class CardComponent implements OnInit {
   imageId: string;
 
   @Input()
-  state: CardState;
+  cardState: CardState;
 
   @Output()
   cardClick = new EventEmitter();
@@ -50,7 +50,7 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {}
 
   cardClicked(): void {
-    if (this.state !== CardState.Matched) {
+    if (this.cardState === CardState.Default) {
       this.cardClick.emit();
     }
   }

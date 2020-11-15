@@ -6,6 +6,6 @@
   gutterSize="10px"
 >
   <mat-grid-tile *ngFor="let card of bf.cards$ | async; let idx = index"
-    ><app-card [imageId]="card.imageId" [state]="card.state" (cardClick)="onCardClick(idx, card.imageId)"></app-card
+    ><app-card [imageId]="card.imageId" [cardState]="card.state" (cardClick)="onCardClick(idx, card.imageId)"></app-card
   ></mat-grid-tile>
 </mat-grid-list>
