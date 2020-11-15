@@ -1,6 +1,13 @@
 .board-list {
-    padding-top: 10px;
-    height: calc(100vh - 20px);
-    width: 50%;
-    left: 25%;
+  padding-top: 10px;
+  height: calc(100vh - 20px);
+  width: 50%;
+  left: 25%;
+}
+
+@media only screen and (max-width: 768px) {
+  .board-list {
+    width: 100%;
+    left: 0;
+  }
 }
