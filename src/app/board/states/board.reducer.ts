@@ -32,7 +32,7 @@ export const reducer = createReducer(
 
   on(BoardActions.flipCard, (state, { idx, imageId }) => ({
     ...state,
-    cards: state.cards.map((card, i) => (i === idx ? { ...card, state: CardState.Flipped } : card)),
-    pair: [...state.pair, { idx, imageId }]
+    cards: state.pair.length < 2 ? state.cards.map((card, i) => (i === idx ? { ...card, state: CardState.Flipped } : card)) : state.cards,
+    pair: [...state.pair, ...(state.pair.length < 2 ? [{ idx, imageId }] : [])]
   }))
 );
