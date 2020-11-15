@@ -10,7 +10,7 @@ export class BoardService {
   constructor() {}
 
   loadBoard(size): Observable<Card[]> {
-    const arr = this.shuffleArray([...IMAGES].slice(0, size / 2));
+    const arr = this.shuffleArray([...IMAGES]).slice(0, size / 2);
     const cards = this.shuffleArray([...arr, ...arr]).map(imageId => ({ imageId, state: CardState.Default }));
     return of(cards);
   }
