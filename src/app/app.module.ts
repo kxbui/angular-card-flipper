@@ -15,9 +15,14 @@ import { NgxImagelyModule } from '@iresa/ngx-imagely';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
+    !environment.production
+      ? StoreDevtoolsModule.instrument({
+          maxAge: 25,
+          logOnly: environment.production
+        })
+      : [],
     BoardModule,
     NgxImagelyModule.forRoot()
   ],

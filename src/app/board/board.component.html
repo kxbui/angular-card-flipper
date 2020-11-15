@@ -1,3 +1,11 @@
-<mat-grid-list cols="4" class="board-list" rowHeight="fit" gutterSize="10px" >
-    <mat-grid-tile *ngFor="let card of cards"><app-card></app-card></mat-grid-tile>
-  </mat-grid-list>
+<mat-grid-list
+  *ngIf="{ pairFull: pairFull$ | async, allMatched: allMatched$ | async }"
+  cols="4"
+  class="board-list"
+  rowHeight="fit"
+  gutterSize="10px"
+>
+  <mat-grid-tile *ngFor="let card of bf.cards$ | async; let idx = index"
+    ><app-card [imageId]="card.imageId" [state]="card.state" (cardClick)="onCardClick(idx, card.imageId)"></app-card
+  ></mat-grid-tile>
+</mat-grid-list>

@@ -1,15 +1,12 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnInit } from '@angular/core';
-
-export interface CardData {
-  imageId: string;
-  state: 'default' | 'flipped' | 'matched';
-}
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CardState } from '../board/states/board.model';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('cardFlip', [
       state(
@@ -40,20 +37,21 @@ export interface CardData {
 })
 export class CardComponent implements OnInit {
   @Input()
-  imageId = 'pDGNBK9A0sk';
-  state = 'default';
+  imageId: string;
 
-  constructor() { }
+  @Input()
+  state: CardState;
 
-  ngOnInit(): void {
-  }
+  @Output()
+  cardClick = new EventEmitter();
+
+  constructor() {}
+
+  ngOnInit(): void {}
 
   cardClicked(): void {
-    if (this.state === 'default') {
-      this.state = 'flipped';
-    } else {
-      this.state = 'default';
+    if (this.state !== CardState.Matched) {
+      this.cardClick.emit();
     }
   }
-
 }

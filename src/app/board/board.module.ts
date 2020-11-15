@@ -6,7 +6,8 @@ import * as fromBoard from './states/board.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { BoardEffects } from './states/board.effects';
 import { StoreModule } from '@ngrx/store';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [BoardComponent],
@@ -14,9 +15,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
     CommonModule,
     CardModule,
     MatGridListModule,
+    MatDialogModule,
     StoreModule.forFeature(fromBoard.boardFeatureKey, fromBoard.reducer),
     EffectsModule.forFeature([BoardEffects])
   ],
   exports: [BoardComponent]
 })
-export class BoardModule { }
+export class BoardModule {}
