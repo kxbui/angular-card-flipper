@@ -29,8 +29,8 @@ import { CardState } from '../board/states/board.model';
           opacity: 0
         })
       ),
-      transition('default => flipped', [animate('400ms')]),
-      transition('flipped => default', [animate('400ms')]),
+      transition('* => flipped', [animate('400ms')]),
+      transition('* => default', [animate('400ms')]),
       transition('* => matched', [animate('400ms')])
     ])
   ]
