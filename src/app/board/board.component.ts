@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { debounceTime, filter, tap } from 'rxjs/operators';
+import { debounceTime, filter, tap, withLatestFrom } from 'rxjs/operators';
 import { BoardFacade } from './states/board.facade';
 
 @Component({
@@ -14,7 +14,7 @@ export class BoardComponent implements OnInit {
   pair: { idx; id }[];
 
   pairFull$: Observable<boolean>;
-  allMatched$: Observable<boolean>;
+  allMatched$: Observable<any>;
 
   constructor(public bf: BoardFacade, public dialog: MatDialog) {}
 
@@ -34,8 +34,9 @@ export class BoardComponent implements OnInit {
 
   onAllMatched(): void {
     this.allMatched$ = this.bf.allMatched$.pipe(
-      filter(allMatched => !!allMatched),
-      tap(_ => this.showResultDialog())
+      withLatestFrom(this.bf.scores$),
+      filter(([allMatched]) => !!allMatched),
+      tap(([_, scores]) => this.showResultDialog(scores))
     );
   }
 
@@ -43,9 +44,12 @@ export class BoardComponent implements OnInit {
     this.bf.flipCard({ idx, imageId });
   }
 
-  async showResultDialog(): Promise<void> {
+  async showResultDialog(scores): Promise<void> {
     const { ResultDialogComponent } = await import('../result-dialog/result-dialog.component');
-    const dialogRef = this.dialog.open(ResultDialogComponent);
+    const dialogRef = this.dialog.open(ResultDialogComponent, {
+      width: '20vw',
+      data: { scores }
+    });
 
     dialogRef.afterClosed().subscribe(_ => {
       this.startGame();

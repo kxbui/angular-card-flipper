@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, NgModule, OnInit } from '@angular/core';
-import { MatDialogModule } from '@angular/material/dialog';
+import { ChangeDetectionStrategy, Component, Inject, NgModule, OnInit } from '@angular/core';
+import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -10,7 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ResultDialogComponent implements OnInit {
-  constructor() {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data) {}
 
   ngOnInit(): void {}
 }
