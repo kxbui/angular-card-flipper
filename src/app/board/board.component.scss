@@ -1,6 +1,6 @@
 .board-list {
   padding-top: 10px;
-  height: calc(100% - 20px);
+  height: calc(100% - 56px);
   width: 50%;
   left: 25%;
 }
@@ -11,4 +11,12 @@
     width: 100%;
     left: 0;
   }
+}
+
+.mat-toolbar-single-row {
+  height: 36px;
+}
+
+.score {
+  margin: 0 auto;
 }

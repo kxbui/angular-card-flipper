@@ -14,6 +14,8 @@ export class BoardFacade {
 
   allMatched$ = this.store.pipe(select(BoardSelectors.selectAllMatched));
 
+  scores$ = this.store.pipe(select(BoardSelectors.selectScores));
+
   constructor(private store: Store<BoardState>) {}
 
   loadBoardCards(size): void {

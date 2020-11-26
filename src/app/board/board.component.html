@@ -1,3 +1,6 @@
+<mat-toolbar color="primary">
+  <span class="score">Score: {{ bf.scores$ | async }}</span>
+</mat-toolbar>
 <mat-grid-list
   *ngIf="{ pairFull: pairFull$ | async, allMatched: allMatched$ | async }"
   cols="4"

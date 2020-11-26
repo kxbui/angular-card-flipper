@@ -8,6 +8,7 @@ import { BoardEffects } from './states/board.effects';
 import { StoreModule } from '@ngrx/store';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [BoardComponent],
@@ -16,6 +17,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     CardModule,
     MatGridListModule,
     MatDialogModule,
+    MatToolbarModule,
     StoreModule.forFeature(fromBoard.boardFeatureKey, fromBoard.reducer),
     EffectsModule.forFeature([BoardEffects])
   ],

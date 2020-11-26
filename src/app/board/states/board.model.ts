@@ -12,4 +12,9 @@ export interface Card {
 export interface BoardState {
   cards: Card[];
   pair: { idx; imageId }[];
+  scores: number;
 }
+
+export const MATCHED_SCORE = 10;
+
+export const UNMATCHED_SCORE = -2;

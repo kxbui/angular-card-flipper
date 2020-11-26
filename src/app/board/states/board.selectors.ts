@@ -13,3 +13,5 @@ export const selectPairFull = createSelector(selectBoardState, (state: BoardStat
 export const selectAllMatched = createSelector(selectBoardState, (state: BoardState) =>
   state.cards.every(card => card.state === CardState.Matched)
 );
+
+export const selectScores = createSelector(selectBoardState, (state: BoardState) => state.scores);
