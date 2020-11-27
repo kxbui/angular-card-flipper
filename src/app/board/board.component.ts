@@ -1,3 +1,4 @@
+import { animate, keyframes, query, stagger, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
@@ -8,7 +9,33 @@ import { BoardFacade } from './states/board.facade';
   selector: 'app-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    // Trigger animation cards array
+    trigger('cardAnimation', [
+      // Transition from any state to any state
+      transition('* => *', [
+        // Initially the all cards are not visible
+        query(':enter', style({ opacity: 0 }), { optional: true }),
+
+        // Each card will appear sequentially with the delay of 300ms
+        query(
+          ':enter',
+          stagger('100ms', [
+            animate(
+              '.5s ease-in',
+              keyframes([
+                style({ opacity: 0, transform: 'translateY(-50%)', offset: 0 }),
+                style({ opacity: 0.5, transform: 'translateY(-10px) scale(1.1)', offset: 0.3 }),
+                style({ opacity: 1, transform: 'translateY(0)', offset: 1 })
+              ])
+            )
+          ]),
+          { optional: true }
+        )
+      ])
+    ])
+  ]
 })
 export class BoardComponent implements OnInit {
   pair: { idx; id }[];
@@ -36,6 +63,7 @@ export class BoardComponent implements OnInit {
     this.allMatched$ = this.bf.allMatched$.pipe(
       withLatestFrom(this.bf.scores$),
       filter(([allMatched]) => !!allMatched),
+      tap(_ => this.bf.loadBoardCards(0)),
       tap(([_, scores]) => this.showResultDialog(scores))
     );
   }

@@ -1,14 +1,12 @@
-<mat-toolbar color="primary">
-  <span class="score">Score: {{ bf.scores$ | async }}</span>
-</mat-toolbar>
-<mat-grid-list
-  *ngIf="{ pairFull: pairFull$ | async, allMatched: allMatched$ | async }"
-  cols="4"
-  class="board-list"
-  rowHeight="fit"
-  gutterSize="10px"
+<ng-container
+  *ngIf="{ pairFull: pairFull$ | async, allMatched: allMatched$ | async, cards: bf.cards$ | async, scores: bf.scores$ | async } as data"
 >
-  <mat-grid-tile *ngFor="let card of bf.cards$ | async; let idx = index"
-    ><app-card [imageId]="card.imageId" [cardState]="card.state" (cardClick)="onCardClick(idx, card.imageId)"></app-card
-  ></mat-grid-tile>
-</mat-grid-list>
+  <mat-toolbar color="primary">
+    <span class="score">Score: {{ data.scores }}</span>
+  </mat-toolbar>
+  <mat-grid-list [@cardAnimation]="data.cards.length" cols="4" class="board-list" rowHeight="fit" gutterSize="10px">
+    <mat-grid-tile *ngFor="let card of data.cards; let idx = index"
+      ><app-card [imageId]="card.imageId" [cardState]="card.state" (cardClick)="onCardClick(idx, card.imageId)"></app-card
+    ></mat-grid-tile>
+  </mat-grid-list>
+</ng-container>
