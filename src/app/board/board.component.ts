@@ -75,7 +75,7 @@ export class BoardComponent implements OnInit {
   async showResultDialog(scores): Promise<void> {
     const { ResultDialogComponent } = await import('../result-dialog/result-dialog.component');
     const dialogRef = this.dialog.open(ResultDialogComponent, {
-      width: '20vw',
+      minWidth: '30vw',
       data: { scores }
     });
 
