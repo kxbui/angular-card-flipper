@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { debounceTime, filter, tap, withLatestFrom } from 'rxjs/operators';
 import { BoardFacade } from './states/board.facade';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-board',
@@ -43,7 +44,7 @@ export class BoardComponent implements OnInit {
   pairFull$: Observable<boolean>;
   allMatched$: Observable<any>;
 
-  constructor(public bf: BoardFacade, public dialog: MatDialog) {}
+  constructor(public bf: BoardFacade, public dialog: MatDialog, private readonly breakpointObserver: BreakpointObserver) {}
 
   ngOnInit(): void {
     this.onPairFull();
@@ -75,7 +76,7 @@ export class BoardComponent implements OnInit {
   async showResultDialog(scores): Promise<void> {
     const { ResultDialogComponent } = await import('../result-dialog/result-dialog.component');
     const dialogRef = this.dialog.open(ResultDialogComponent, {
-      minWidth: '30vw',
+      minWidth: this.breakpointObserver.isMatched(Breakpoints.XSmall) ? '95vw' : '30vw',
       data: { scores }
     });
 
