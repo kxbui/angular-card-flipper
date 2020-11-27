@@ -38,5 +38,10 @@ export const reducer = createReducer(
     ...state,
     cards: state.pair.length < 2 ? state.cards.map((card, i) => (i === idx ? { ...card, state: CardState.Flipped } : card)) : state.cards,
     pair: [...state.pair, ...(state.pair.length < 2 ? [{ idx, imageId }] : [])]
+  })),
+
+  on(BoardActions.clearBoard, state => ({
+    ...state,
+    cards: []
   }))
 );

@@ -11,3 +11,5 @@ export const foundMatch = createAction('[Board] Found Match', props<{ idxPair: s
 export const unFlip = createAction('[Board] UnFlip', props<{ idxPair: string[] }>());
 
 export const checkPair = createAction('[Board] Check Pair');
+
+export const clearBoard = createAction('[Board] Clear Board');

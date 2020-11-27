@@ -29,4 +29,8 @@ export class BoardFacade {
   checkPair(): void {
     this.store.dispatch(BoardActions.checkPair());
   }
+
+  clearBoard(): void {
+    this.store.dispatch(BoardActions.clearBoard());
+  }
 }

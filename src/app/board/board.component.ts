@@ -64,7 +64,7 @@ export class BoardComponent implements OnInit {
     this.allMatched$ = this.bf.allMatched$.pipe(
       withLatestFrom(this.bf.scores$),
       filter(([allMatched]) => !!allMatched),
-      tap(_ => this.bf.loadBoardCards(0)),
+      tap(_ => this.bf.clearBoard()),
       tap(([_, scores]) => this.showResultDialog(scores))
     );
   }
@@ -76,7 +76,7 @@ export class BoardComponent implements OnInit {
   async showResultDialog(scores): Promise<void> {
     const { ResultDialogComponent } = await import('../result-dialog/result-dialog.component');
     const dialogRef = this.dialog.open(ResultDialogComponent, {
-      minWidth: this.breakpointObserver.isMatched(Breakpoints.XSmall) ? '95vw' : '30vw',
+      minWidth: this.breakpointObserver.isMatched([Breakpoints.XSmall, Breakpoints.Small]) ? '95vw' : '30vw',
       data: { scores }
     });
 
@@ -86,6 +86,6 @@ export class BoardComponent implements OnInit {
   }
 
   startGame(): void {
-    this.bf.loadBoardCards(16);
+    this.bf.loadBoardCards(20);
   }
 }

@@ -4,7 +4,7 @@
   <mat-toolbar color="primary">
     <span class="score">Score: {{ data.scores }}</span>
   </mat-toolbar>
-  <mat-grid-list [@cardAnimation]="data.cards.length" cols="4" class="board-list" rowHeight="fit" gutterSize="10px">
+  <mat-grid-list [@cardAnimation]="data.cards.length" [cols]="data.cards.length / 4" class="board-list" rowHeight="fit" gutterSize="10px">
     <mat-grid-tile *ngFor="let card of data.cards; let idx = index"
       ><app-card [imageId]="card.imageId" [cardState]="card.state" (cardClick)="onCardClick(idx, card.imageId)"></app-card
     ></mat-grid-tile>
