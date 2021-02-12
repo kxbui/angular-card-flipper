@@ -6,9 +6,9 @@ export const loadBoardCardSuccess = createAction('[Board] Load Board Card Succes
 
 export const flipCard = createAction('[Board] Flip Card', props<{ idx; imageId }>());
 
-export const foundMatch = createAction('[Board] Found Match', props<{ idxPair: string[] }>());
+export const foundMatch = createAction('[Board] Found Match', props<{ idxPair: number[] }>());
 
-export const unFlip = createAction('[Board] UnFlip', props<{ idxPair: string[] }>());
+export const unFlip = createAction('[Board] UnFlip', props<{ idxPair: number[] }>());
 
 export const checkPair = createAction('[Board] Check Pair');
 
