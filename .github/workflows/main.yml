@@ -9,7 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-<<<<<<< HEAD
       uses: actions/checkout@v1
     - name: GitHub Pages 
       uses: cmgriffing/scully-gh-pages-action@v9
@@ -18,28 +17,3 @@ jobs:
           access-token: ${{ secrets.ACCESS_TOKEN }}
           build-args: --prod
           scully-args: --scanRoutes --prod
-=======
-      uses: actions/checkout@v2
-      with:
-          persist-credentials: false
-
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14.x
-
-    - name: Install and Build
-      run: |
-          npm install
-          npm run build
-
-    - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: dist/angular-card-flipper
-
-        
-
->>>>>>> 354555a00e8e74aec739bc93a7bf4ab22217f4c0
