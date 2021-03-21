@@ -9,6 +9,8 @@ import { StoreModule } from '@ngrx/store';
 import { BoardModule } from './board/board.module';
 import { EffectsModule } from '@ngrx/effects';
 import { NgxImagelyModule } from '@iresa/ngx-imagely';
+import { ScullyLibModule } from '@scullyio/ng-lib';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +26,9 @@ import { NgxImagelyModule } from '@iresa/ngx-imagely';
         })
       : [],
     BoardModule,
-    NgxImagelyModule.forRoot()
+    NgxImagelyModule.forRoot(),
+    RouterModule.forRoot([]),
+    ScullyLibModule
   ],
   providers: [],
   bootstrap: [AppComponent]
