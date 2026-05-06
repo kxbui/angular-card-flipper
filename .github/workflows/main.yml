@@ -9,9 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v1
+      uses: actions/checkout@v6
+    - name: Setup Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: "14"
     - name: GitHub Pages 
-      uses: cmgriffing/scully-gh-pages-action@v9
+      uses: cmgriffing/scully-gh-pages-action@v10
       with:
           deploy-branch: gh-pages
           access-token: ${{ secrets.ACCESS_TOKEN }}

@@ -8,5 +8,8 @@ export const config: ScullyConfig = {
   projectName: 'angular-card-flipper',
   outDir: './dist/static',
   defaultPostRenderers: [baseHrefRewrite],
-  routes: {}
+  routes: {},
+  puppeteerLaunchOptions: {
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  }
 };
